@@ -14,7 +14,7 @@ module ANSI2HTML
       '37' => 'white',
       '90' => 'grey'
     }
-    
+
     def self.execute
       new(STDIN.read, STDOUT, ARGV.index('--envelope'), ARGV.index('--black'))
     end
@@ -69,7 +69,7 @@ module ANSI2HTML
         if s.scan(/\e\[(3[0-7]|90|1)m/)
           out.print(%{<span class="#{COLOR[s[1]]}">})
         else
-          if s.scan(/\e\[0m/)
+          if s.scan(/\e\[0?m/)
             out.print(%{</span>})
           else
             out.print(s.scan(/./m))
